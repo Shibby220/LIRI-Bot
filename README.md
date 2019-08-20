@@ -1,8 +1,8 @@
-# LIRIBot
+# LIRI-Bot
 
 ## Overview 
 
-LIRI is a command line node app that takes in specific commands related to movie titles, song titles, and band/artist names and retrieves data about them from various APIs.
+LIRI-Bot is a command line node app that takes in specific commands related to movie titles, song titles, and band/artist names and retrieves data about them from various APIs.
 
 ### Built With
 

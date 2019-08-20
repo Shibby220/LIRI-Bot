@@ -1,10 +1,10 @@
-# LiriBot
+# LIRIBot
 
-### Overview 
+## Overview 
 
 LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a Language Interpretation and Recognition Interface. LIRI is a command line node app that takes in parameters and gives you back data related to movies, songs, and concerts.
 
-## Built With
+### Built With
 
 * [Node-Spotify-API](https://www.npmjs.com/package/node-spotify-api)
 
@@ -22,19 +22,19 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 2. Run `npm install`
 3. Run one of the commands mentioned below
 
-### How to run and what each command does
+### Commands
 
 1. `node liri.js concert-this <artist/band name here>`
 
    * This will search the Bands in Town Artist Events API for an artist and render the following information about each event to the terminal:
-
+    
      * Name of the venue
 
      * Venue location
 
      * Date of the event formatted in "MM/DD/YYYY"
 
-    ![concert-this](https://imgur.com/FNGOD9N.png)
+    ![concert-this](https://i.imgur.com/3rHEF75.png)
 
 2. `node liri.js spotify-this-song <song name here>`
 
@@ -75,6 +75,6 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
    * Using the `fs` Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
 
-     * It should run `spotify-this-song` for "I Want it That Way," as you can see is written in the file `random.txt`.
+     * This will run `spotify-this-song` for "I Want it That Way," as you can see is written in the file `random.txt`.
 
     ![do-what-it-says](https://imgur.com/S8INM6Y.png)

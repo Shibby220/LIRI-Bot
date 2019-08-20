@@ -67,7 +67,7 @@ LIRI is a command line node app that takes in specific commands related to movie
        * Actors in the movie.
      ```
 
-   * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
+   * If the user doesn't type a movie in, the program will output data for the movie "Mr. Nobody."
 
     ![movie-this](https://imgur.com/QRVYEuR.png)
 

@@ -34,7 +34,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
      * Date of the event formatted in "MM/DD/YYYY"
 
-    ![concert-this](https://imgur.com/FNGOD9N)
+    ![concert-this](https://imgur.com/FNGOD9N.png)
 
 2. `node liri.js spotify-this-song <song name here>`
 
@@ -50,7 +50,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
    * If no song is provided then your program will default to "The Sign" by Ace of Base.
 
-    ![spotify-this](https://imgur.com/a/w305IN7)
+    ![spotify-this](https://imgur.com/a/w305IN7.png)
 
 3. `node liri.js movie-this <movie name here>`
 
@@ -69,7 +69,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
    * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
 
-    ![movie-this](https://imgur.com/QRVYEuR)
+    ![movie-this](https://imgur.com/QRVYEuR.png)
 
 4. `node liri.js do-what-it-says`
 
@@ -77,4 +77,4 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
      * It should run `spotify-this-song` for "I Want it That Way," as you can see is written in the file `random.txt`.
 
-    ![do-what-it-says](https://imgur.com/S8INM6Y)
+    ![do-what-it-says](https://imgur.com/S8INM6Y.png)

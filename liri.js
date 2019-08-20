@@ -1,18 +1,17 @@
 require("dotenv").config();
 var keys = require("./keys.js");
-var request = require("request");
 var moment = require("moment");
 var fs = require("fs");
 var axios = require("axios");
 
-var Spotify = ("node-spotify-api");
+var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
 
-var userInput = process.argv[2];
+var userCommand = process.argv[2];
 var userQuery = process.argv.slice(3).join(" ");
 
-function switchCase(userInput, userQuery) {
-    switch (userInput){
+function switchCase(userCommand, userQuery) {
+    switch (userCommand){
         case "concert-this":
             concertThis(userQuery);
             break;
@@ -23,25 +22,25 @@ function switchCase(userInput, userQuery) {
             movieThis(userQuery);
             break;
         case "do-what-it-says":
-            doWhatItSays();
+            doWhatItSays(userQuery);
             break;
         default:
             console.log("Please input a valid command")
     }
 }
 
-switchCase(userInput, userQuery);
+switchCase(userCommand, userQuery);
 
 function concertThis(userQuery) {
     axios.get("https://rest.bandsintown.com/artists/" + userQuery + "/events?app_id=codecademy")
         .then(function (response) {
             var data = response.data;
-            for (i in data) {
+            for (var i = 0 ; i < data.length ; i++) {
                 var date = moment(data[i].datetime).format("MMM DD, YYYY");
-                console.log("What: " + data[i].venue.name)
-                console.log("Where: " + data[i].venue.city + ", " + data[i].venue.country);
-                console.log("When: " + date);
-                console.log("\n---------------------------------------------------\n");
+                console.log("---------------------------------------------------");
+                console.log("Venue: " + data[i].venue.name)
+                console.log("Location: " + data[i].venue.city + ", " + data[i].venue.country);
+                console.log("Date: " + date);
             }
         })
         .catch(function (error) {
@@ -49,7 +48,7 @@ function concertThis(userQuery) {
         });
 }
 
-function spotifyThis(){
+function spotifyThis(userQuery){
     if (!userQuery) {
         userQuery = "the sign ace of base"
     };
@@ -60,11 +59,13 @@ function spotifyThis(){
         }
         var spotifyArr = data.tracks.items;
 
-        for (i = 0 ; i < spotifyArr.length; i++){
+        for (var i = 0 ; i < spotifyArr.length; i++){
+            console.log("---------------------------------------------------");
             console.log("Artist: " + data.tracks.items[i].album.artists[0].name);
             console.log("Song: " + data.tracks.items[i].name);
             console.log("Spotify link: " + data.tracks.items[i].external_urls.spotify);
             console.log("Album: " + data.tracks.items[i].album.name);
+            console.log("---------------------------------------------------");
         };
     });   
 }
@@ -79,25 +80,24 @@ function movieThis(userQuery) {
     } else {
     axios.get("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&tomatoes=true&apikey=trilogy").then(
         function(response) {
-            var data = response.data;
-            console.log('================ Movie Info ================');
-            console.log("Title: " + data.Title);
-            console.log("Release Year: " + data.Year);
-            console.log("IMdB Rating: " + data.imdbRating);
-            console.log("Rotten Tomatoes Rating: " + data.Ratings[2].Value);
-            console.log("Country: " + data.Country);
-            console.log("Language: " + data.Language);
-            console.log("Plot: " + data.Plot);
-            console.log("Actors: " + data.Actors);
-            console.log('==================THE END=================');
-    });
+            console.log("---------------------------------------------------");
+            console.log("Title: " + response.data.Title);
+            console.log("Release Year: " + response.data.Year);
+            console.log("IMDB Rating: " + response.data.imdbRating);
+            console.log("Rotten Tomatoes Rating: " + response.data.Ratings[2].Value);
+            console.log("Country: " + response.data.Country);
+            console.log("Language: " + response.data.Language);
+            console.log("Plot: " + response.data.Plot);
+            console.log("Actors: " + response.data.Actors);
+            console.log("---------------------------------------------------");
+        });
     }
 }
 
-function doWhatItSays(){
+function doWhatItSays(userQuery){
     fs.readFile('random.txt', "utf8", function(error, data){
-        if (err) { throw err };
-        var txt = data.toString().split(",");
-        spotifyThis(txt[1]);
+        if (error) { throw error };
+        var random = data.toString().split(",");
+        spotifyThis(random[1]);
     });
 }

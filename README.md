@@ -34,7 +34,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
      * Date of the event formatted in "MM/DD/YYYY"
 
-    ![concert-this](https://i.imgur.com/3rHEF75.png)
+    ![concert-this](https://i.imgur.com/tzVaxSq.png)
 
 2. `node liri.js spotify-this-song <song name here>`
 
@@ -75,6 +75,6 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
    * Using the `fs` Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
 
-     * This will run `spotify-this-song` for "I Want it That Way," as you can see is written in the file `random.txt`.
+     * This will run `spotify-this-song` for "I Want it That Way," `concert-this` for Eminem, and `movie-this` for "The Matrix" as you can see is written in the file `random.txt`.
 
-    ![do-what-it-says](https://imgur.com/S8INM6Y.png)
+    ![do-what-it-says](https://i.imgur.com/7rCAmrK.png)

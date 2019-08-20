@@ -36,7 +36,7 @@ function concertThis(userQuery) {
         .then(function (response) {
             var data = response.data;
             for (var i = 0 ; i < data.length ; i++) {
-                var date = moment(data[i].datetime).format("MMM DD, YYYY");
+                var date = moment(data[i].datetime).format("MM/DD/YYYY");
                 console.log("---------------------------------------------------");
                 console.log("Venue: " + data[i].venue.name)
                 console.log("Location: " + data[i].venue.city + ", " + data[i].venue.country);
@@ -55,7 +55,7 @@ function spotifyThis(userQuery){
 
     spotify.search({type: 'track', query: userQuery, limit: 1}, function(error, data) {
         if (error) {
-            return console.log("Error occured: " + error);
+            console.log("Error occured: " + error);
         }
         var spotifyArr = data.tracks.items;
 
@@ -71,15 +71,14 @@ function spotifyThis(userQuery){
 }
 
 function movieThis(userQuery) {
-    var movieName = userQuery;
-    if (!movieName) {
-        movieName = "Mr Nobody";
+    if (!userQuery) {
+        userQuery = "Mr Nobody";
         console.log("---------------------------------------------------");
         console.log("If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
         console.log("It's on Netflix!");
     } 
-    axios.get("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&tomatoes=true&apikey=trilogy").then(
-        function(response) {
+    axios.get("http://www.omdbapi.com/?t=" + userQuery + "&y=&plot=short&tomatoes=true&apikey=trilogy")
+        .then(function(response) {
             var data = response.data;
             console.log("---------------------------------------------------");
             console.log("Title: " + data.Title);
@@ -93,13 +92,14 @@ function movieThis(userQuery) {
             console.log("---------------------------------------------------");
         });
 }
-
 function doWhatItSays(){
     fs.readFile('random.txt', "utf8", function(error, data){
         if (error) { 
-            console.log(error) 
+            console.log("Error occured: " + error);
         }
-        var random = data.toString().split(",");
-        switchCase(random[0], random[1]);
+        var txt = data.toString().split(",");
+        for (var i = 0 ; i < txt.length ; i += 2){
+            switchCase(txt[i], txt[i+1]);
+        }
     });
 }

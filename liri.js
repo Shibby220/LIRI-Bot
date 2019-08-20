@@ -15,14 +15,14 @@ function switchCase(userCommand, userQuery) {
         case "concert-this":
             concertThis(userQuery);
             break;
-        case "spotify-this":
+        case "spotify-this-song":
             spotifyThis(userQuery);
             break;
         case "movie-this":
             movieThis(userQuery);
             break;
         case "do-what-it-says":
-            doWhatItSays(userQuery);
+            doWhatItSays();
             break;
         default:
             console.log("Please input a valid command")
@@ -73,31 +73,33 @@ function spotifyThis(userQuery){
 function movieThis(userQuery) {
     var movieName = userQuery;
     if (!movieName) {
+        movieName = "Mr Nobody";
         console.log("---------------------------------------------------");
         console.log("If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
         console.log("It's on Netflix!");
-        console.log("---------------------------------------------------");
-    } else {
+    } 
     axios.get("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&tomatoes=true&apikey=trilogy").then(
         function(response) {
+            var data = response.data;
             console.log("---------------------------------------------------");
-            console.log("Title: " + response.data.Title);
-            console.log("Release Year: " + response.data.Year);
-            console.log("IMDB Rating: " + response.data.imdbRating);
-            console.log("Rotten Tomatoes Rating: " + response.data.Ratings[2].Value);
-            console.log("Country: " + response.data.Country);
-            console.log("Language: " + response.data.Language);
-            console.log("Plot: " + response.data.Plot);
-            console.log("Actors: " + response.data.Actors);
+            console.log("Title: " + data.Title);
+            console.log("Release Year: " + data.Year);
+            console.log("IMDB Rating: " + data.imdbRating);
+            console.log("Rotten Tomatoes Rating: " + data.Ratings[2].Value);
+            console.log("Country: " + data.Country);
+            console.log("Language: " + data.Language);
+            console.log("Plot: " + data.Plot);
+            console.log("Actors: " + data.Actors);
             console.log("---------------------------------------------------");
         });
-    }
 }
 
-function doWhatItSays(userQuery){
+function doWhatItSays(){
     fs.readFile('random.txt', "utf8", function(error, data){
-        if (error) { throw error };
+        if (error) { 
+            console.log(error) 
+        }
         var random = data.toString().split(",");
-        spotifyThis(random[1]);
+        switchCase(random[0], random[1]);
     });
 }

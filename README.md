@@ -50,7 +50,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
    * If no song is provided then your program will default to "The Sign" by Ace of Base.
 
-    ![spotify-this](https://imgur.com/a/w305IN7.png)
+    ![spotify-this](https://i.imgur.com/k0MAhyV.png)
 
 3. `node liri.js movie-this <movie name here>`
 
